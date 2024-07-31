@@ -13,7 +13,6 @@ import 'package:mobile_attendance/src/helpers/date_time_format.dart';
 import 'package:mobile_attendance/src/helpers/navigator_helper.dart';
 import 'package:mobile_attendance/src/presentations/components/button.dart';
 import 'package:mobile_attendance/src/presentations/pages/history_attendance_page/history_attendance_page.dart';
-import 'package:mobile_attendance/src/presentations/shared/images.dart';
 import 'package:mobile_attendance/src/presentations/shared/ui_helpers.dart';
 
 class HomePage extends StatefulWidget {
@@ -123,6 +122,7 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.italic,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
@@ -171,14 +171,17 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
         child: Column(
           children: [
+            verticalSpace(10),
             const Center(
-                child: Text(
-              'Choose a Place for Attendance',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+              child: Text(
+                'Choose a Place for Attendance',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            )),
+            ),
+            verticalSpace(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -580,20 +583,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> setMarker(LatLng coordinate) async {
-    latLngSelected = coordinate;
-    BitmapDescriptor customIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(50, 50)),
-      iconMarker,
-    ).then((d) {
-      return d;
-    });
+    // latLngSelected = coordinate;
+    // BitmapDescriptor customIcon = await BitmapDescriptor.fromAssetImage(
+    //   const ImageConfiguration(size: Size(50, 50)),
+    //   iconMarker,
+    // ).then((d) {
+    //   return d;
+    // });
 
     markers.clear();
     markers.add(
       Marker(
         markerId: MarkerId(coordinate.toString()),
         position: coordinate,
-        icon: customIcon,
+        icon: BitmapDescriptor.defaultMarker,
       ),
     );
     setState(() {});
